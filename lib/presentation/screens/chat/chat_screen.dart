@@ -1,3 +1,6 @@
+import 'package:chat_app/presentation/widgets/chat/her_message_bubble.dart';
+import 'package:chat_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:chat_app/presentation/widgets/shared/message_field_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -28,15 +31,24 @@ class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          Expanded(child: Container(
-            color: Colors.red,
-          )),
-          Text('Hola mundo'),
-      
-          Text('PRUEBA')
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(  
+                itemCount: 100,
+                itemBuilder: (context, index) {
+                  
+                  return (index % 2 == 0)
+                  ? const HerMessageBubble()
+                  : const MyMessageBubble();
+
+              },)),
+              //Caja de tgexto
+            const MessageFieldBox()
+          ],
+        ),
       ),
     );
   }
